@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="wap-font-scale" content="no">
+    <meta name="format-detection" content="telephone=no" />
+</head>
+
+<body>
+	wxDome
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+	<script>
+		document.write("<script src='http://xxxxx.cn/wxDemo/accessToken/signPackage.php?originUrl=" + window.location.href + "' type='text/javascript'><\/script>");
+	</script>
+	<script>
+		
+		/*填写路径是公众号上真好的安全域名*/
+		var baseUrl = "http://xxxxx.cn/wxDemo/index.html";
+		var wxData = {
+			"imgUrl" : 'http://xxxxx.cn/wxDemo/wx300.jpg',
+			"link"   : baseUrl,
+			"title"  : 'wxDemo-标题',
+			"desc"   : 'wxDemo-描述信息！'
+		};
+		wx.config({
+			debug: false,
+			appId: signPackage.appId,
+			timestamp: parseInt(signPackage.timestamp),
+			nonceStr: signPackage.nonceStr,
+			signature: signPackage.signature,
+			jsApiList: [
+				'updateAppMessageShareData',
+				'updateTimelineShareData'
+			]
+		});
+		wx.ready(function () {						 
+			wx.updateAppMessageShareData({
+				title: wxData.title,
+				desc: wxData.desc,
+				link: wxData.link,
+				imgUrl: wxData.imgUrl,
+				type: 'link',
+				dataUrl: '',
+				success: function () {
+				}
+			});
+			wx.updateTimelineShareData({
+				title: wxData.title,
+				desc: wxData.desc,
+				link: wxData.link,
+				imgUrl: wxData.imgUrl,
+				type: 'link',
+				dataUrl: '',
+				success: function () {
+				}
+			});
+		});
+
+	</script>
+
+</body>
+
+</html>
