@@ -31,11 +31,31 @@
 			nonceStr: signPackage.nonceStr,
 			signature: signPackage.signature,
 			jsApiList: [
+				'onMenuShareTimeline',
+				'onMenuShareAppMessage',
 				'updateAppMessageShareData',
 				'updateTimelineShareData'
 			]
 		});
-		wx.ready(function () {						 
+		wx.ready(function () {	
+			wx.onMenuShareTimeline({
+				title: wxData.title,
+				desc: wxData.desc,
+				link: wxData.link,
+				imgUrl: wxData.imgUrl,
+				type: 'link',
+				dataUrl: '',
+				success: function() {}
+			});
+			wx.onMenuShareAppMessage({
+				title: wxData.title,
+				desc: wxData.desc,
+				link: wxData.link,
+				imgUrl: wxData.imgUrl,
+				type: 'link',
+				dataUrl: '',
+				success: function() {}
+			});
 			wx.updateAppMessageShareData({
 				title: wxData.title,
 				desc: wxData.desc,
